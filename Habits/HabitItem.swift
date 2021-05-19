@@ -55,9 +55,10 @@ struct HabitItem: View {
         .cornerRadius(10)
         .onTapGesture {
             if habit.value < habit.maxValue {
-                withAnimation(.spring()) {
+                withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
                     habit.value += 1
                     dataController.save()
+                    hapticTap()
                 }
             }
         }
@@ -78,6 +79,7 @@ struct HabitItem: View {
                         withAnimation {
                             habit.value = 0
                             dragOffset = .zero
+                            hapticTap()
                         }
                     } else {
                         withAnimation {
@@ -87,6 +89,11 @@ struct HabitItem: View {
                 }
         )
         .transition(.move(edge: .leading))
+    }
+
+    func hapticTap() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }
 

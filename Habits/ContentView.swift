@@ -24,7 +24,7 @@ struct ContentView: View {
                     VStack(spacing: 10) {
                         Text("SIMPLE HABITS")
                             .font(.system(.largeTitle, design: .rounded)).bold()
-                            .padding(.vertical, 40)
+                            .padding(.vertical, 30)
 
                         ForEach(habits) { habit in
                             HabitItem(habit: habit)
@@ -48,6 +48,7 @@ struct ContentView: View {
                                 .padding()
                                 .background(Color("Background"))
                                 .clipShape(Circle())
+                                .shadow(color: .black.opacity(0.08), radius: 4)
                         }
                         .buttonStyle(ScaledButtonStyle())
                     }
