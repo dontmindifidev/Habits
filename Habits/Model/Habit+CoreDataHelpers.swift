@@ -23,6 +23,13 @@ extension Habit {
         return Color.red
     }
 
+    var altColor: Color {
+        if let colorName = colorName {
+            return Color("\(colorName)_a")
+        }
+        return Color.red
+    }
+
     static var preview: Habit {
         let dataController = DataController(inMemory: true)
         let habit = Habit(context: dataController.container.viewContext)
