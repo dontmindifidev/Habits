@@ -28,24 +28,24 @@ struct AddHabitView: View {
                 .edgesIgnoringSafeArea(.all)
 
             VStack(alignment: .leading, spacing: 20) {
-                Text("Create New Habit")
-                    .font(.largeTitle.bold())
+                Text("New Habit")
+                    .font(.system(.largeTitle, design: .rounded).bold())
                     .padding(.top, 40)
 
                 Section {
                     TextField("Enter habit name", text: $habitName)
                 }
-                .font(.largeTitle.weight(.heavy))
+                .font(.system(.largeTitle, design: .rounded).weight(.heavy))
                 .foregroundColor(currentColor)
 
                 Section {
                     HStack(spacing: 5) {
                         Text("\(maximumValue)")
-                            .font(.largeTitle.bold())
+                            .font(.system(.largeTitle, design: .rounded).bold())
                             .foregroundColor(currentColor)
 
                         Stepper("time\(maximumValue == 1 ? "" : "s") per week", value: $maximumValue, in: 1...20)
-                            .font(.title3.bold())
+                            .font(.system(.title3, design: .rounded).bold())
                     }
                 }
 
@@ -59,7 +59,6 @@ struct AddHabitView: View {
 
                             Text("Colour")
                         }
-                        .font(.body.bold())
                         .foregroundColor(currentColor)
                         .padding(.vertical, 20)
                         .padding(.horizontal, 30)
@@ -71,8 +70,7 @@ struct AddHabitView: View {
                         saveHabit()
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text("Save Habit")
-                            .font(.body.bold())
+                        Text("Create Habit")
                             .foregroundColor(.white)
                             .padding(.vertical, 20)
                             .padding(.horizontal, 30)
@@ -82,6 +80,7 @@ struct AddHabitView: View {
                     .disabled(failedValidation)
                     .opacity(failedValidation ? 0.7 : 1)
                 }
+                .font(.system(.body, design: .rounded).bold())
             }
             .textFieldStyle(PlainTextFieldStyle())
             .accentColor(currentColor)

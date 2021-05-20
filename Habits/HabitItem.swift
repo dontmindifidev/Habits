@@ -12,6 +12,7 @@ struct HabitItem: View {
 
     @ObservedObject var habit: Habit
     @State private var dragOffset = CGSize.zero
+    @State private var scaled = false
 
     var completed: Bool {
         withAnimation {
@@ -35,8 +36,8 @@ struct HabitItem: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(habit.habitName)
-                        .font(.system(.headline, design: .rounded).bold())
-                    Text("\(habit.value)/\(habit.maxValue) completed")
+                        .font(.system(.title3, design: .rounded).bold())
+                    Text("\(habit.value) / \(habit.maxValue)")
                         .font(.system(.subheadline, design: .rounded).bold())
                         .textCase(.uppercase)
                 }
@@ -52,17 +53,36 @@ struct HabitItem: View {
             .padding(.horizontal)
         }
         .background(habit.color.opacity(0.2))
-        .cornerRadius(10)
+        .cornerRadius(12)
+        .scaleEffect(scaled ? 0.97 : 1)
+        .offset(x: dragOffset.width)
         .onTapGesture {
             if habit.value < habit.maxValue {
                 withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
                     habit.value += 1
+                    scaled = true
                     dataController.save()
-                    hapticTap()
+                    if completed {
+                        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+                            withAnimation(.spring(response: 0.1, dampingFraction: 0.2)) {
+                                scaled = false
+                            }
+                        }
+                        hapticNotification(.success)
+                    } else {
+                        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
+                            withAnimation(.spring(response: 0.2, dampingFraction: 0.4)) {
+                                scaled = false
+                            }
+                        }
+                        hapticTap(.medium)
+                    }
                 }
             }
         }
-        .offset(x: dragOffset.width)
+        .onLongPressGesture {
+            print("Long press")
+        }
         .gesture(
             DragGesture()
                 .onChanged { value in
@@ -79,7 +99,7 @@ struct HabitItem: View {
                         withAnimation {
                             habit.value = 0
                             dragOffset = .zero
-                            hapticTap()
+                            hapticNotification(.warning)
                         }
                     } else {
                         withAnimation {
@@ -91,9 +111,14 @@ struct HabitItem: View {
         .transition(.move(edge: .leading))
     }
 
-    func hapticTap() {
+    func hapticTap(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.impactOccurred()
+    }
+
+    func hapticNotification(_ feedbackType: UINotificationFeedbackGenerator.FeedbackType) {
         let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
+        generator.notificationOccurred(feedbackType)
     }
 }
 

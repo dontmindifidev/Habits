@@ -17,13 +17,15 @@ struct ContentView: View {
 
     var body: some View {
             ZStack {
-                Color("Background").opacity(0.12)
+                Color("Background")
                     .edgesIgnoringSafeArea(.all)
 
-                ScrollView {
-                    VStack(spacing: 10) {
-                        Text("SIMPLE HABITS")
-                            .font(.system(.largeTitle, design: .rounded)).bold()
+                ScrollView() {
+                    VStack(spacing: 12) {
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 32)
                             .padding(.vertical, 30)
 
                         ForEach(habits) { habit in
@@ -43,10 +45,10 @@ struct ContentView: View {
                             }
                         } label: {
                             Image(systemName: "plus")
-                                .foregroundColor(.white)
-                                .font(.system(size: 50))
+                                .foregroundColor(.primary)
+                                .font(.system(size: 36))
                                 .padding()
-                                .background(Color("Background"))
+                                .background(Color("color9"))
                                 .clipShape(Circle())
                                 .shadow(color: .black.opacity(0.08), radius: 4)
                         }

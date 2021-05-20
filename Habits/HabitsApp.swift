@@ -22,7 +22,11 @@ struct HabitsApp: App {
             ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
-            
+                .onAppear {
+                    dataController.createDataOnFirstLaunch()
+                }
         }
     }
+
+    
 }
