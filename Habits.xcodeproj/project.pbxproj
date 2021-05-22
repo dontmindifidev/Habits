@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6671C8812654E29700338AD9 /* Habit+CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6671C8802654E29700338AD9 /* Habit+CoreDataHelpers.swift */; };
 		6671C88426553DDE00338AD9 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6671C88326553DDE00338AD9 /* ButtonStyles.swift */; };
+		6671C8AD2658468D00338AD9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6671C8AC2658468D00338AD9 /* Theme.swift */; };
 		6676CAA02654CB05002CC8ED /* HabitsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6676CA9F2654CB05002CC8ED /* HabitsApp.swift */; };
 		6676CAA22654CB05002CC8ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAA12654CB05002CC8ED /* ContentView.swift */; };
 		6676CAA42654CB07002CC8ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6676CAA32654CB07002CC8ED /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		6671C8802654E29700338AD9 /* Habit+CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		6671C88326553DDE00338AD9 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		6671C8AC2658468D00338AD9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		6676CA9C2654CB05002CC8ED /* Habits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Habits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6676CA9F2654CB05002CC8ED /* HabitsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsApp.swift; sourceTree = "<group>"; };
 		6676CAA12654CB05002CC8ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				6671C88326553DDE00338AD9 /* ButtonStyles.swift */,
 				6676CAB02654D72A002CC8ED /* AddHabitView.swift */,
 				6676CAAE2654CE25002CC8ED /* HabitItem.swift */,
+				6671C8AC2658468D00338AD9 /* Theme.swift */,
 				6676CAA32654CB07002CC8ED /* Assets.xcassets */,
 				6676CAA82654CB07002CC8ED /* Info.plist */,
 				6671C882265523A800338AD9 /* Model */,
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6671C8AD2658468D00338AD9 /* Theme.swift in Sources */,
 				6676CAB32654DD94002CC8ED /* DataController.swift in Sources */,
 				6676CAA22654CB05002CC8ED /* ContentView.swift in Sources */,
 				6676CAB62654DF05002CC8ED /* Habits.xcdatamodeld in Sources */,

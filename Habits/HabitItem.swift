@@ -29,19 +29,24 @@ struct HabitItem: View {
             HStack {
                 Image(systemName: "arrow.counterclockwise")
                     .foregroundColor(.blue)
+                    .scaleEffect(dragOffset.width > .zero ? 1 : 0.001)
+                    .opacity(dragOffset.width > .zero ? 1 : 0.001)
 
                 Spacer()
 
                 Image(systemName: "trash")
                     .foregroundColor(.red)
+                    .scaleEffect(dragOffset.width < .zero ? 1 : 0.001)
+                    .opacity(dragOffset.width < .zero ? 1 : 0.001)
+
             }
-            .font(.largeTitle)
+            .font(.title.bold())
             .padding()
 
             ZStack {
                 GeometryReader { geo in
                     Rectangle()
-                        .foregroundColor(habit.color)
+                        .foregroundColor(habit.theme.backgroundColor)
                         .frame(maxHeight: .infinity)
                         .frame(width: max(0, geo.size.width / CGFloat(habit.maxValue) * CGFloat(habit.value)))
                 }
@@ -63,9 +68,10 @@ struct HabitItem: View {
                         .opacity(completed ? 1 : 0)
                         .scaleEffect(completed ? 1 : 10)
                 }
+                .foregroundColor(habit.theme.foregroundColor)
                 .padding(.horizontal)
             }
-            .background(habit.altColor)
+            .background(habit.theme.absenceColor)
             .cornerRadius(12)
             .scaleEffect(scaled ? 0.97 : 1)
             .offset(x: dragOffset.width)
@@ -94,7 +100,11 @@ struct HabitItem: View {
                 }
             }
             .onLongPressGesture {
-                print("Long press")
+                withAnimation {
+                    habit.value = 0
+                }
+
+                dataController.save()
             }
             .gesture(
                 DragGesture()
@@ -111,6 +121,7 @@ struct HabitItem: View {
                             habit.objectWillChange.send()
                             withAnimation {
                                 habit.value = 0
+                                dataController.save()
                                 dragOffset = .zero
                                 hapticNotification(.warning)
                             }

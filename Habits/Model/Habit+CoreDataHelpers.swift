@@ -12,6 +12,10 @@ extension Habit {
         name ?? ""
     }
 
+    var theme: Theme {
+        themes.first(where: {$0.themeName == colorName }) ?? Theme(themeName: "unknown", backgroundColor: Color("Background"), absenceColor: Color("Background"), foregroundColor: Color("Background"))
+    }
+
     var completed: Bool {
         value == maxValue
     }
