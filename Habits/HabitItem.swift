@@ -14,6 +14,14 @@ struct HabitItem: View {
     @State private var dragOffset = CGSize.zero
     @State private var scaled = false
 
+    var isEditing: Bool {
+        itemEditing == habit
+    }
+
+    @Binding var itemEditing: Habit?
+
+    @State private var habitName = ""
+
     var completed: Bool {
         withAnimation {
             habit.value == habit.maxValue
@@ -38,10 +46,10 @@ struct HabitItem: View {
                     .foregroundColor(.red)
                     .scaleEffect(dragOffset.width < .zero ? 1 : 0.001)
                     .opacity(dragOffset.width < .zero ? 1 : 0.001)
-
             }
             .font(.title.bold())
             .padding()
+            .opacity(isEditing ? 0 : 1)
 
             ZStack {
                 GeometryReader { geo in
@@ -51,105 +59,140 @@ struct HabitItem: View {
                         .frame(width: max(0, geo.size.width / CGFloat(habit.maxValue) * CGFloat(habit.value)))
                 }
 
-                HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(habit.habitName)
-                            .font(.system(.title3, design: .rounded).bold())
-                        Text("\(habit.value) / \(habit.maxValue)")
-                            .font(.system(.subheadline, design: .rounded).bold())
-                            .textCase(.uppercase)
-                    }
-                    .padding(.bottom, 10)
-                    .padding(.top, 30)
+                if isEditing {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            TextField("Enter habit Name", text: $habitName)
+                                .font(.system(.title3, design: .rounded).bold())
+                                .accentColor(habit.theme.foregroundColor)
+                                .onChange(of: habitName) { _ in
+                                    habit.name = habitName
+                                }
 
-                    Spacer()
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.title2)
-                        .opacity(completed ? 1 : 0)
-                        .scaleEffect(completed ? 1 : 10)
+                            Text("\(habit.value) / \(habit.maxValue)")
+                                .font(.system(.subheadline, design: .rounded).bold())
+                                .textCase(.uppercase)
+
+                        }
+                        .padding(.bottom, 10)
+                        .padding(.top, 30)
+                    }
+                    .foregroundColor(habit.theme.foregroundColor)
+                    .padding(.horizontal)
+
+                } else {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(habit.habitName)
+                                .font(.system(.title3, design: .rounded).bold())
+                            Text("\(habit.value) / \(habit.maxValue)")
+                                .font(.system(.subheadline, design: .rounded).bold())
+                                .textCase(.uppercase)
+                        }
+                        .padding(.bottom, 10)
+                        .padding(.top, 30)
+
+                        Spacer()
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.title2)
+                            .opacity(completed ? 1 : 0)
+                            .scaleEffect(completed ? 1 : 10)
+                    }
+                    .foregroundColor(habit.theme.foregroundColor)
+                    .padding(.horizontal)
                 }
-                .foregroundColor(habit.theme.foregroundColor)
-                .padding(.horizontal)
             }
             .background(habit.theme.absenceColor)
             .cornerRadius(12)
-            .scaleEffect(scaled ? 0.97 : 1)
+            .scaleEffect(scaled ? 0.96 : 1)
+            .scaleEffect(isEditing ? 1.06 : 1)
             .offset(x: dragOffset.width)
+            .onChange(of: isEditing) { _ in
+                if isEditing == false {
+                    updateHabit()
+                }
+            }
             .onTapGesture {
-                if habit.value < habit.maxValue {
-                    withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
-                        habit.value += 1
-                        scaled = true
-                        dataController.save()
-                        if completed {
-                            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
-                                withAnimation(.spring(response: 0.1, dampingFraction: 0.2)) {
-                                    scaled = false
+                if !isEditing {
+                    if habit.value < habit.maxValue {
+                        withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
+                            habit.value += 1
+                            scaled = true
+                            dataController.save()
+                            if completed {
+                                Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+                                    withAnimation(.spring(response: 0.1, dampingFraction: 0.2)) {
+                                        scaled = false
+                                    }
                                 }
-                            }
-                            hapticNotification(.success)
-                        } else {
-                            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-                                withAnimation(.spring(response: 0.2, dampingFraction: 0.4)) {
-                                    scaled = false
+                                Haptics.hapticNotification(.success)
+                            } else {
+                                Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
+                                    withAnimation(.spring(response: 0.2, dampingFraction: 0.4)) {
+                                        scaled = false
+                                    }
                                 }
+                                Haptics.hapticTap(.medium)
                             }
-                            hapticTap(.medium)
                         }
                     }
                 }
             }
             .onLongPressGesture {
-                withAnimation {
-                    habit.value = 0
+                if !isEditing {
+                    habitName = habit.habitName
+                    withAnimation {
+                        itemEditing = habit
+                        Haptics.hapticTap(.heavy)
+                    }
                 }
-
-                dataController.save()
             }
             .gesture(
                 DragGesture()
                     .onChanged { value in
-                        dragOffset.width = value.translation.width
+                        if !isEditing {
+                            dragOffset.width = value.translation.width
+                        }
                     }
                     .onEnded { value in
-                        if value.translation.width < -200 {
-                            withAnimation(.easeOut) {
-                                dataController.delete(habit)
-                                dataController.save()
-                            }
-                        } else if value.translation.width > 200 {
-                            habit.objectWillChange.send()
-                            withAnimation {
+                        if !isEditing {
+                            if value.translation.width < -200 {
+                                withAnimation(.easeOut) {
+                                    dataController.delete(habit)
+                                    dataController.save()
+                                }
+                            } else if value.translation.width > 200 {
+                                habit.objectWillChange.send()
                                 habit.value = 0
                                 dataController.save()
-                                dragOffset = .zero
-                                hapticNotification(.warning)
-                            }
-                        } else {
-                            withAnimation {
-                                dragOffset = .zero
+                                Haptics.hapticNotification(.warning)
+                                withAnimation {
+                                    dragOffset = .zero
+                                }
+                            } else {
+                                withAnimation {
+                                    dragOffset = .zero
+                                }
                             }
                         }
                     }
             )
-            .transition(.move(edge: .leading))
         }
     }
 
-    func hapticTap(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
-        let generator = UIImpactFeedbackGenerator(style: style)
-        generator.impactOccurred()
-    }
-
-    func hapticNotification(_ feedbackType: UINotificationFeedbackGenerator.FeedbackType) {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(feedbackType)
+    func updateHabit() {
+        if habitName.isEmpty {
+            dataController.delete(habit)
+        } else {
+            habit.name = habitName
+        }
+        dataController.save()
     }
 }
 
 struct HabitItem_Previews: PreviewProvider {
     static var previews: some View {
-        HabitItem(habit: Habit.preview)
+        HabitItem(habit: Habit.preview, itemEditing: .constant(Habit.preview))
     }
 }
 

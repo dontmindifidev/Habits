@@ -13,3 +13,12 @@ struct ScaledButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.9 : 1)
     }
 }
+
+struct SymbolButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+
+        configuration.label
+            .opacity(configuration.isPressed ? 0.8 : 1)
+
+    }
+}

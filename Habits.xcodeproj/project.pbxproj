@@ -15,9 +15,9 @@
 		6676CAA42654CB07002CC8ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6676CAA32654CB07002CC8ED /* Assets.xcassets */; };
 		6676CAA72654CB07002CC8ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6676CAA62654CB07002CC8ED /* Preview Assets.xcassets */; };
 		6676CAAF2654CE25002CC8ED /* HabitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAAE2654CE25002CC8ED /* HabitItem.swift */; };
-		6676CAB12654D72A002CC8ED /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAB02654D72A002CC8ED /* AddHabitView.swift */; };
 		6676CAB32654DD94002CC8ED /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAB22654DD94002CC8ED /* DataController.swift */; };
 		6676CAB62654DF05002CC8ED /* Habits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAB42654DF05002CC8ED /* Habits.xcdatamodeld */; };
+		66D83551265B953A001A9BB6 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D83550265B953A001A9BB6 /* Haptics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +31,9 @@
 		6676CAA62654CB07002CC8ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6676CAA82654CB07002CC8ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6676CAAE2654CE25002CC8ED /* HabitItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItem.swift; sourceTree = "<group>"; };
-		6676CAB02654D72A002CC8ED /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		6676CAB22654DD94002CC8ED /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		6676CAB52654DF05002CC8ED /* Habits.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habits.xcdatamodel; sourceTree = "<group>"; };
+		66D83550265B953A001A9BB6 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +79,9 @@
 				6676CA9F2654CB05002CC8ED /* HabitsApp.swift */,
 				6676CAA12654CB05002CC8ED /* ContentView.swift */,
 				6671C88326553DDE00338AD9 /* ButtonStyles.swift */,
-				6676CAB02654D72A002CC8ED /* AddHabitView.swift */,
 				6676CAAE2654CE25002CC8ED /* HabitItem.swift */,
 				6671C8AC2658468D00338AD9 /* Theme.swift */,
+				66D83550265B953A001A9BB6 /* Haptics.swift */,
 				6676CAA32654CB07002CC8ED /* Assets.xcassets */,
 				6676CAA82654CB07002CC8ED /* Info.plist */,
 				6671C882265523A800338AD9 /* Model */,
@@ -169,10 +169,10 @@
 			files = (
 				6671C8AD2658468D00338AD9 /* Theme.swift in Sources */,
 				6676CAB32654DD94002CC8ED /* DataController.swift in Sources */,
+				66D83551265B953A001A9BB6 /* Haptics.swift in Sources */,
 				6676CAA22654CB05002CC8ED /* ContentView.swift in Sources */,
 				6676CAB62654DF05002CC8ED /* Habits.xcdatamodeld in Sources */,
 				6671C8812654E29700338AD9 /* Habit+CoreDataHelpers.swift in Sources */,
-				6676CAB12654D72A002CC8ED /* AddHabitView.swift in Sources */,
 				6671C88426553DDE00338AD9 /* ButtonStyles.swift in Sources */,
 				6676CAA02654CB05002CC8ED /* HabitsApp.swift in Sources */,
 				6676CAAF2654CE25002CC8ED /* HabitItem.swift in Sources */,
