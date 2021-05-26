@@ -59,8 +59,11 @@ struct ContentView: View {
 
                         ZStack {
                             Button {
-                                itemEditing?.maxValue += 1
+                                guard let maxValue = itemEditing?.maxValue else { return }
 
+                                if maxValue < 20 {
+                                    itemEditing?.maxValue += 1
+                                }
                             } label: {
                                 Image(systemName: "plus")
                                     .foregroundColor(.primary)
@@ -76,7 +79,12 @@ struct ContentView: View {
                             }
 
                             Button {
-                                itemEditing?.maxValue -= 1
+                                guard let maxValue = itemEditing?.maxValue else { return }
+                                guard let value = itemEditing?.value else { return }
+
+                                if maxValue > max(value, 1) {
+                                    itemEditing?.maxValue -= 1
+                                }
                             } label: {
                                 Image(systemName: "minus")
                                     .foregroundColor(.primary)
