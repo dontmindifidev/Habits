@@ -6,9 +6,6 @@ Habitapp is the first of my one day build projects in SwiftUI. Whilst there are 
 On the main screen, users can tap on each of their habits to add to the completion total. 
 Swiping to the left will reset the habit to zero, whilst swiping to the right will delete the habit.
 
-<img src="NewHabit.png" width="400">
-When the user taps the large plus button on the main screen a modal sheet appears asking the user to enter the name of a new habit and set how many times per week they wish to complete the activity. 
-
-The shuffle colour button at the bottom of the screen will select a random colour from nine preset colours. 
+Users can tap the large "Plus" button to create a new habit and set the number of times per week that they aim to complete the task.
 
 The app is build entirely in SwiftUI and uses CoreData for persistence.
