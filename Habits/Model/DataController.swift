@@ -9,10 +9,10 @@ import CoreData
 import Foundation
 
 class DataController: ObservableObject {
-    let container: NSPersistentContainer
+    let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Habits")
+        container = NSPersistentCloudKitContainer(name: "Habits")
 
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(string: "/dev/null")
@@ -22,6 +22,8 @@ class DataController: ObservableObject {
             if let error = error {
                 fatalError("Error loading store: \(error.localizedDescription)")
             }
+
+            self.container.viewContext.automaticallyMergesChangesFromParent = true
         }
     }
 
