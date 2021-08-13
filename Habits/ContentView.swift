@@ -40,10 +40,11 @@ struct ContentView: View {
                             HabitItem(habit: habit, itemEditing: $itemEditing)
                                 .disabled(itemEditing != habit && itemEditing != nil)
                                 .opacity(itemEditing != habit && itemEditing != nil ? 0.1 : 1)
-                                .transition(.asymmetric(
-                                                insertion: .move(edge: .top).combined(with: .scale),
-                                                removal: .move(edge: .leading).combined(with: .opacity))
-                                )
+                                .transition(
+                                    AnyTransition.asymmetric(
+                                        insertion: .move(edge: .top).combined(with: .scale),
+                                        removal: .move(edge: .leading).combined(with: .opacity))
+                                    )
                         }
                     }
                     .padding(.horizontal)
@@ -137,8 +138,6 @@ struct ContentView: View {
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
-
-
                     }
                     .padding([.horizontal, .bottom])
                 }
@@ -158,7 +157,8 @@ struct ContentView: View {
 
     func endEditing() {
         if itemEditing != nil {
-            withAnimation(.spring(response: 0.7, dampingFraction: 1)) {
+            withAnimation(
+                .spring(response: 0.7, dampingFraction: 1)) {
                 itemEditing = nil
                 Haptics.hapticTap(.soft)
             }
