@@ -27,6 +27,7 @@ struct ContentView: View {
             }
             .listStyle(EllipticalListStyle())
             .navigationTitle("Habitapp")
+            
         }
     }
 }

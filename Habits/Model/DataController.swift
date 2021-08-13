@@ -44,7 +44,7 @@ class DataController: ObservableObject {
         }
     }
 
-    private func createDefaultHabits() {
+    func createDefaultHabits() {
         let habit1 = Habit(context: container.viewContext)
         habit1.id = UUID()
         habit1.name = "5k Run"
