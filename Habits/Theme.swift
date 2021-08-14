@@ -12,6 +12,14 @@ struct Theme {
     var backgroundColor: Color
     var absenceColor: Color
     var foregroundColor: Color
+
+    static let themePreview: Theme =
+        Theme(
+            themeName: "color1",
+            backgroundColor: Color("color1"),
+            absenceColor: Color("color1_a"),
+            foregroundColor: Color("color1_f")
+        )
 }
 
 var themes: [Theme] = [

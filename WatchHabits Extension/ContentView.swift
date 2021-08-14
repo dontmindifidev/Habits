@@ -22,6 +22,14 @@ struct ContentView: View {
             List {
                 ForEach(habits) { habit in
                     HabitItem(habit: habit)
+                        .onTapGesture {
+                            withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
+                                if habit.value < habit.maxValue {
+                                    habit.value += 1
+                                    dataController.save()
+                                }
+                            }
+                        }
                 }
                 .listRowBackground(Color.clear)
             }

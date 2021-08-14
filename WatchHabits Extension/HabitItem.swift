@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HabitItem: View {
-    @EnvironmentObject var dataController: DataController
     @ObservedObject var habit: Habit
 
     var body: some View {
@@ -24,24 +23,30 @@ struct HabitItem: View {
                         .frame(width: max(0, geo.size.width / CGFloat(habit.maxValue) * CGFloat(habit.maxValue - habit.value)))
                 }
 
-                HStack {
-                    Text(habit.habitName)
-                        .foregroundColor(habit.theme.foregroundColor)
-                    Spacer()
+                VStack(spacing: 0) {
+                    HStack {
+                        Text(habit.habitName)
+                            .foregroundColor(habit.theme.foregroundColor)
+                            .bold()
+
+                        Spacer()
+                    }
+                    HStack {
+                        Text("\(habit.value)/\(habit.maxValue)")
+                            .foregroundColor(habit.theme.foregroundColor)
+                            .font(.footnote)
+
+                        Spacer()
+                    }
+
                 }
+
                 .padding(.horizontal, 8)
+                .padding(.vertical, 4)
             }
             .frame(maxWidth: .infinity)
             .background(habit.theme.absenceColor)
             .cornerRadius(10)
-        }
-        .onTapGesture {
-            withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
-                if habit.value < habit.maxValue {
-                    habit.value += 1
-                    dataController.save()
-                }
-            }
         }
     }
 }
