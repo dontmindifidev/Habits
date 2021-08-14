@@ -20,6 +20,8 @@
 		6676CAAF2654CE25002CC8ED /* HabitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAAE2654CE25002CC8ED /* HabitItem.swift */; };
 		6676CAB32654DD94002CC8ED /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAB22654DD94002CC8ED /* DataController.swift */; };
 		6676CAB62654DF05002CC8ED /* Habits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6676CAB42654DF05002CC8ED /* Habits.xcdatamodeld */; };
+		667A17E126C6A18B00FA3D75 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667A17E026C6A18B00FA3D75 /* CloudKit.framework */; };
+		667A17E426C6A1A800FA3D75 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667A17E326C6A1A800FA3D75 /* CloudKit.framework */; };
 		669225ED26636FA10064B345 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669225EC26636FA10064B345 /* Assets.xcassets */; };
 		669225F426636FA10064B345 /* WatchHabits Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 669225F326636FA10064B345 /* WatchHabits Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		669225FB26636FA10064B345 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669225FA26636FA10064B345 /* ContentView.swift */; };
@@ -92,6 +94,10 @@
 		6676CAAE2654CE25002CC8ED /* HabitItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItem.swift; sourceTree = "<group>"; };
 		6676CAB22654DD94002CC8ED /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		6676CAB52654DF05002CC8ED /* Habits.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habits.xcdatamodel; sourceTree = "<group>"; };
+		667A17DE26C6A18800FA3D75 /* Habits.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Habits.entitlements; sourceTree = "<group>"; };
+		667A17E026C6A18B00FA3D75 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		667A17E226C6A1A400FA3D75 /* WatchHabits Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchHabits Extension.entitlements"; sourceTree = "<group>"; };
+		667A17E326C6A1A800FA3D75 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		669225EA26636FA00064B345 /* WatchHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		669225EC26636FA10064B345 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		669225EE26636FA10064B345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				667A17E126C6A18B00FA3D75 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				667A17E426C6A1A800FA3D75 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +150,7 @@
 				669225EB26636FA00064B345 /* WatchHabits */,
 				669225F726636FA10064B345 /* WatchHabits Extension */,
 				6676CA9D2654CB05002CC8ED /* Products */,
+				667A17DF26C6A18B00FA3D75 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +167,7 @@
 		6676CA9E2654CB05002CC8ED /* Habits */ = {
 			isa = PBXGroup;
 			children = (
+				667A17DE26C6A18800FA3D75 /* Habits.entitlements */,
 				6676CA9F2654CB05002CC8ED /* HabitsApp.swift */,
 				6676CAA12654CB05002CC8ED /* ContentView.swift */,
 				6671C88326553DDE00338AD9 /* ButtonStyles.swift */,
@@ -180,6 +190,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		667A17DF26C6A18B00FA3D75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				667A17E326C6A1A800FA3D75 /* CloudKit.framework */,
+				667A17E026C6A18B00FA3D75 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		669225EB26636FA00064B345 /* WatchHabits */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +211,7 @@
 		669225F726636FA10064B345 /* WatchHabits Extension */ = {
 			isa = PBXGroup;
 			children = (
+				667A17E226C6A1A400FA3D75 /* WatchHabits Extension.entitlements */,
 				669225FA26636FA10064B345 /* ContentView.swift */,
 				665849C22663863900F39B49 /* HabitItem.swift */,
 				669225FC26636FA10064B345 /* NotificationController.swift */,
@@ -510,6 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Habits/Habits.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Habits/Preview Content\"";
@@ -522,7 +543,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dontmindifidev.simple-habit-tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dontmindifidev.habitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -534,6 +555,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Habits/Habits.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Habits/Preview Content\"";
@@ -546,7 +568,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dontmindifidev.simple-habit-tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dontmindifidev.habitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -564,7 +586,7 @@
 				IBSC_MODULE = WatchHabits_Extension;
 				INFOPLIST_FILE = WatchHabits/Info.plist;
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dontmindifidev.simple-habit-tracker.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dontmindifidev.habitapp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -585,7 +607,7 @@
 				IBSC_MODULE = WatchHabits_Extension;
 				INFOPLIST_FILE = WatchHabits/Info.plist;
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dontmindifidev.simple-habit-tracker.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dontmindifidev.habitapp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -599,6 +621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WatchHabits Extension/WatchHabits Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchHabits Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3G827QYCC5;
@@ -610,7 +633,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dontmindifidev.simple-habit-tracker.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dontmindifidev.habitapp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -624,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WatchHabits Extension/WatchHabits Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchHabits Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 3G827QYCC5;
@@ -635,7 +659,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dontmindifidev.simple-habit-tracker.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dontmindifidev.habitapp.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

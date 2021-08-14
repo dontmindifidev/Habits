@@ -42,9 +42,9 @@ struct ContentView: View {
                                 .opacity(itemEditing != habit && itemEditing != nil ? 0.1 : 1)
                                 .transition(
                                     AnyTransition.asymmetric(
-                                        insertion: .move(edge: .top).combined(with: .scale),
-                                        removal: .move(edge: .leading).combined(with: .opacity))
-                                    )
+                                        insertion: AnyTransition.move(edge: .top).animation(.spring()).combined(with: AnyTransition.scale.animation(.spring())),
+                                        removal: AnyTransition.move(edge: .leading).animation(.spring()).combined(with: AnyTransition.opacity).animation(.spring()))
+                                )
                         }
                     }
                     .padding(.horizontal)
